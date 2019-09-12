@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{:url('addHomeworkDoWith')}" method="get">
+    <p>
+        title:
+        <input type="text" name="title">
+    </p>
+    <p>
+        content: <br>
+        <textarea name="content" cols="20" rows="5"></textarea>
+    </p>
+    <p>
+        remind_date:
+        <input type="text" name="remind_date">
+    </p>
+    <p>
+        remind_time:
+        <input type="text" name="remind_time">
+    </p>
+    <p>
+        tag:
+        <input type="text" name="tag" id="">
+    </p>
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>
