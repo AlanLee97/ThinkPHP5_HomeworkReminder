@@ -2,9 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>个人中心</title>
 </head>
-<body>
-User控制器
+<body class="body-bg">
+
+<!-- ================= Header start ================= -->
+
+<header id="">
+    {include file="public/header"}
+</header>
+
+
+<!-- ----------------- Header end ------------------- -->
+
+
+<table border="1" width="80%" align="center" class="table table-hover table-bordered">
+    <tr class="table-light">
+        <th>ID</th>
+        <th>USERNAME</th>
+        <th>PASSWORD</th>
+        <th>NICKNAME</th>
+        <th>SCHOOL</th>
+        <th>MAJOR</th>
+        <th>CLASS</th>
+        <th>CREATE_TIME</th>
+        <th>编辑</th>
+        <th>删除</th>
+
+    </tr>
+
+    {volist name="data" id="user"}
+    <tr>
+        <td>{$key}</td>
+        <td>{$user.username}</td>
+        <td>{$user.password}</td>
+        <td>{$user.nickname}</td>
+        <td>{$user.school}</td>
+        <td>{$user.major}</td>
+        <td>{$user.class}</td>
+        <td>{$user.create_time}</td>
+        <td>
+            <a href="/index.php/index/user/editUserInfo?id={$user.id}">编辑</a>
+            <!--<a href="/home.php/home/user/edit?id=$user.id}">编辑</a>-->
+        </td>
+        <td>
+            <a href="">删除</a>
+        </td>
+    </tr>
+
+    {/volist}
+
+</table>
 </body>
 </html>

@@ -11,18 +11,18 @@
 
 use think\Route;
 
-/*return [
+return [
     '__pattern__' => [
         'name' => '\w+',
     ],
     '[hello]'     => [
-        ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
-        ':name' => ['index/hello', ['method' => 'post']],
+        ':id'   => ['home/hello', ['method' => 'get'], ['id' => '\d+']],
+        ':name' => ['home/hello', ['method' => 'post']],
     ],
 
-];*/
+];
 
 //快捷路由
-//Route::controller("index","/index/Index");
-Route::controller("user","index/User");
-//Route::rule("user","/index/User/index");
+//Route::controller("home","/home/Index");
+//Route::controller("user","home/User");
+//Route::resource("user","/home/User");

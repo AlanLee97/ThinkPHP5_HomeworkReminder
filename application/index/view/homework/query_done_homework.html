@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查询作业</title>
+</head>
+<body class="body-bg">
+
+
+<!-- ================= Header start ================= -->
+
+<header id="">
+    {include file="public/header"}
+</header>
+
+
+<!-- ----------------- Header end ------------------- -->
+
+
+
+<table border="1" width="80%" align="center" class="table table-hover table-bordered td">
+    <tr class="table-light">
+        <th>ID</th>
+        <th>USERNAME</th>
+        <th>DATE</th>
+        <th>TITLE</th>
+        <th>CONTENT</th>
+        <th>TAG</th>
+        <th>REMIND_DATE</th>
+        <th>REMIND_TIME</th>
+        <th>编辑</th>
+        <th>删除</th>
+
+    </tr>
+
+    {volist name="data" id="homework"}
+    <tr>
+        <td>{$key}</td>
+        <td>{$homework.username}</td>
+        <td>{$homework.date}</td>
+        <td>{$homework.title}</td>
+        <td>{$homework.content}</td>
+        <td>{$homework.tag}</td>
+        <td>{$homework.remind_date}</td>
+        <td>{$homework.remind_time}</td>
+        <td>
+            <a href="/index.php/index/homework/editHomework?id={$homework.id}">编辑</a>
+            <!--<a href="/home.php/home/homework/edit?id=$homework.id}">编辑</a>-->
+        </td>
+        <td>
+            <a href="/index.php/index/homework/deleteHomeworkDoWith?id={$homework.id}">删除</a>
+        </td>
+    </tr>
+
+    {/volist}
+
+</table>
+</body>
+</html>

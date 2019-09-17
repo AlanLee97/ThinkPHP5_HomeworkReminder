@@ -4,17 +4,35 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
-<form action="{:url('registerDoWith')}" method="post">
-    <p>
-        username:
-        <input type="text" name="username">
-    </p>
-    <p>
-        username:
-        <input type="password" name="password">
-    </p>
-    <input type="submit" value="注册">
-</form>
+<body class="body-bg">
+
+<!-- ================= Header start ================= -->
+
+<header id="">
+    {include file="public/header"}
+</header>
+
+
+<!-- ----------------- Header end ------------------- -->
+
+<center>
+<div class="reg-login-box text-center">
+    <form action="{:url('registerDoWith')}" method="post" class="form-group">
+        <p>
+            帐号:
+            <input type="text" name="username" class="form-control">
+        </p>
+        <p>
+            密码:
+            <input type="password" name="password" class="form-control">
+        </p>
+        <input type="submit" value="注册" class="btn btn-success">
+
+    </form>
+
+    <p><a href="{:url('/index/user/login')}" class="text-right text-primary">登录</a></p>
+
+</div>
+</center>
 </body>
 </html>

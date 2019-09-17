@@ -4,29 +4,51 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
-<form action="{:url('addHomeworkDoWith')}" method="get">
-    <p>
-        title:
-        <input type="text" name="title">
-    </p>
-    <p>
-        content: <br>
-        <textarea name="content" cols="20" rows="5"></textarea>
-    </p>
-    <p>
-        remind_date:
-        <input type="text" name="remind_date">
-    </p>
-    <p>
-        remind_time:
-        <input type="text" name="remind_time">
-    </p>
-    <p>
-        tag:
-        <input type="text" name="tag" id="">
-    </p>
-    <input type="submit" value="提交">
-</form>
+<body class="body-bg">
+
+<!-- ================= Header start ================= -->
+
+<header id="header">
+    {include file="public/header"}
+</header>
+
+
+<!-- ----------------- Header end ------------------- -->
+
+
+
+<center>
+<div class="reg-login-box" style="width: 500px;">
+    <form action="{:url('addHomeworkDoWith')}" method="get" class="form-group">
+        <p>
+            title:
+            <input type="text" name="title" class="form-control">
+        </p>
+        <p>
+            content: <br>
+            <textarea name="content" cols="20" rows="5" class="form-control"></textarea>
+        </p>
+        <p>
+            remind_date:
+            <input type="text" name="remind_date" class="form-control">
+        </p>
+        <p>
+            remind_time:
+            <input type="text" name="remind_time" class="form-control">
+        </p>
+        <p>
+            tag:
+            <input type="text" name="tag" class="form-control">
+        </p>
+        
+        <p>
+            <input type="text" hidden="hidden" name="uid" value="{$uid}">
+        </p>
+        <input type="submit" value="提交" class="btn btn-outline-primary">
+    </form>
+</div>
+</center>
+
+
 </body>
 </html>
