@@ -23,9 +23,11 @@
         <th>ID</th>
         <th>USERNAME</th>
         <th>DATE</th>
+        <th>COURSE</th>
         <th>TITLE</th>
         <th>CONTENT</th>
         <th>TAG</th>
+        <th>DEADTIME</th>
         <th>REMIND_DATE</th>
         <th>REMIND_TIME</th>
         <th>编辑</th>
@@ -38,9 +40,11 @@
         <td>{$key}</td>
         <td>{$homework.username}</td>
         <td>{$homework.date}</td>
+        <td>{$homework.course}</td>
         <td>{$homework.title}</td>
         <td>{$homework.content}</td>
         <td>{$homework.tag}</td>
+        <td>{$homework.deadtime}</td>
         <td>{$homework.remind_date}</td>
         <td>{$homework.remind_time}</td>
         <td>
@@ -48,7 +52,7 @@
             <!--<a href="/home.php/home/homework/edit?id=$homework.id}">编辑</a>-->
         </td>
         <td>
-            <a href="/index.php/index/homework/deleteHomeworkDoWith?id={$homework.id}">删除</a>
+            <a href="/index.php/index/homework/api_deleteHomeworkDoWith?id={$homework.id}">删除</a>
         </td>
     </tr>
 

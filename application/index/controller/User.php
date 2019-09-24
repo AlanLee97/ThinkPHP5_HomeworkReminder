@@ -40,6 +40,32 @@ class User extends Controller
     }
 
 
+    public function personal(){
+        $user = Db::table("t_user")->where("id", "=", $this->getUid())->select();
+        //dump($user);
+        $this->assign("user", $user);
+        return $this->fetch();
+    }
+
+    public function getTouxiang(){
+        $uid = $this->getUid();
+        $sql = "
+                    select t_image.id, t_user.username, t_image.user_img
+                    from t_user, t_image
+                    where t_user.id = t_image.uid and t_user.id = $uid
+                    order by id desc
+                ";
+
+        $txPath = Db::query($sql);
+        if ($txPath){
+            //dump($txPath);
+            return $txPath[0]["user_img"];
+        }else{
+            return "static/home/images/test.jpg";
+        }
+    }
+
+
     /**
      * ================================ 注册 start ============================
      */
@@ -62,7 +88,7 @@ class User extends Controller
         $insert_data = [
             "id" => null,
             "username" => $data["username"],
-            "password" => $data["password"],
+            "password" => md5($data["password"]),
             "nickname" => "用户_".$data["username"],
             "school" => null,
             "major" => null,
@@ -97,7 +123,7 @@ class User extends Controller
         $insert_data = [
             "id" => null,
             "username" => $data["username"],
-            "password" => $data["password"],
+            "password" => md5($data["password"]),
             "nickname" => "用户_".$data["username"],
             "school" => null,
             "major" => null,
@@ -155,11 +181,13 @@ class User extends Controller
         $inp_username = $data["username"];
         $inp_password = $data["password"];
 
+        $passMD5 = md5($inp_password);
+
 
         //从数据库中查询账号密码，进行验证
         $db_data = Db::table("t_user")
             ->where("username", "=", $inp_username)
-            ->where("password", "=", $inp_password)->select();
+            ->where("password", "=", $passMD5)->select();
 
         //dump($db_data);
 
@@ -197,11 +225,13 @@ class User extends Controller
         $inp_username = $data["username"];
         $inp_password = $data["password"];
 
+        $passMD5 = md5($inp_password);
+
 
         //从数据库中查询账号密码，进行验证
         $db_data = Db::table("t_user")
             ->where("username", "=", $inp_username)
-            ->where("password", "=", $inp_password)->select();
+            ->where("password", "=", $passMD5)->select();
 
         //dump($db_data);
 
@@ -294,6 +324,23 @@ class User extends Controller
 
     }
 
+
+    /**
+     * APP端使用：根据id查询用户信息，返回json
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function api_getUserInfoById($id){
+        $data = Db::table("t_user")->where("id", "=", $id)->select();
+        if ($data){
+            $this->toJson("200", "ok", $data);
+        }else{
+            $this->toJson("400", "error", null);
+        }
+
+    }
+
     /**
      * --------------------------------- 个人中心 end ---------------------------------
      */
@@ -314,6 +361,9 @@ class User extends Controller
     }
 
 
+
+    //****************************** api *******************************//
+
     /**
      * APP端使用：编辑用户信息处理
      * @throws \think\Exception
@@ -322,6 +372,7 @@ class User extends Controller
     public function api_editUserInfoDoWith(){
 
         $data = input("get.");
+        //dump($data);
 
         //将数据更新到数据库中
         //$rs = Db::execute('update t_user set username=:username,password=:password where id=:id',$data);
@@ -339,6 +390,91 @@ class User extends Controller
     /**
      * --------------------------------- 编辑用户信息 end ---------------------------------
      */
+
+
+
+    /**
+     * 删除用户
+     * @param $uid 用户id
+     */
+    public function deleteUser($uid){
+        $result = Db::table("t_user")->where("id", "=", $uid) ->delete();
+        if ($result){
+            $this->toJson("200", "ok", null);
+        }else{
+            $this->toJson("400", "error", null);
+        }
+    }
+
+
+
+    /**
+     * ================================ 修改密码 start ============================
+     */
+
+    /**
+     * 修改密码页面
+     * @return mixed
+     */
+    public function modifyPassword(){
+        $uid = $this->getUid();
+        //dump($data);
+        $this->assign("uid", $uid);
+        return $this->fetch();
+    }
+
+
+    /**
+     * 修改处理
+     * @return mixed
+     */
+    public function modifyPasswordDoWith(){
+        $formData = input("post.");
+        dump($formData);
+
+        $uid = $formData["uid"];
+        $password = $formData["password"];
+
+        $result = Db::table("t_user")
+            ->where("id", "=", $uid)
+            ->update(["password" => md5($password)]);
+
+        if ($result){
+            echo "修改密码成功";
+        }else{
+            echo "修改密码失败";
+        }
+
+    }
+
+    /**
+     * 修改处理
+     * @return mixed
+     */
+    public function api_modifyPasswordDoWith(){
+        $formData = input("post.");
+        dump($formData);
+
+        $uid = $formData["uid"];
+        $password = $formData["password"];
+
+        $result = Db::table("t_user")
+            ->where("id", "=", $uid)
+            ->update(["password" => md5($password)]);
+
+        if ($result){
+           $this->toJson("200", "ok", null);
+        }else{
+            $this->toJson("400", "error", null);
+        }
+
+    }
+
+
+    /**
+     * --------------------------------- 修改密码 end ---------------------------------
+     */
+
 
 
 

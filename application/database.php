@@ -20,8 +20,10 @@ return [
     'username'        => 'root',
     // 密码
     'password'        => 'root',
+    //'password'        => 'nibuguai.',
     // 端口
     'hostport'        => '3308',
+    //'hostport'        => '3306',
     // 连接dsn
     'dsn'             => '',
     // 数据库连接参数

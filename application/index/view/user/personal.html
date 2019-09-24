@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+</head>
+<body class="body-bg">
+
+<!-- ================= Header start ================= -->
+
+<header id="header">
+    {include file="public/header"}
+</header>
+
+
+<!-- ----------------- Header end ------------------- -->
+
+<center><h1>个人中心</h1></center>
+
+
+<?php
+    $userObj = new app\index\controller\User();
+
+    $txPath = $userObj->getTouxiang();
+
+?>
+<center>
+    <img src="/uploads/{$txPath}"
+         alt="头像" class="img-thumbnail rounded-circle"
+         width="100px" height="100px">
+    <br> <br>
+
+    <form action="/index.php/index/upload/uploadTouxiang"
+          enctype="multipart/form-data" method="post"
+          class="">
+        <input type="file" name="image" class="btn btn-primary" value="修改头像"/>
+        <input type="submit" value="上传" class="btn btn-outline-primary" />
+    </form>
+</center>
+
+
+<br> <br>
+
+<div class="container">
+    <div class="row">
+        <table class="table table-bordered" width="50%">
+            <tr>
+                <td>用户名</td>
+                <td>{$user[0]["username"]}</td>
+            </tr>
+            <tr>
+                <td>昵称</td>
+                <td>{$user[0]["nickname"]}</td>
+            </tr>
+            <tr>
+                <td>学校</td>
+                <td>{$user[0]["school"]}</td>
+            </tr>
+            <tr>
+                <td>专业</td>
+                <td>{$user[0]["major"]}</td>
+            </tr>
+            <tr>
+                <td>班级</td>
+                <td>{$user[0]["class"]}</td>
+            </tr>
+            <tr>
+                <td>注册时间</td>
+                <td>{$user[0]["create_time"]}</td>
+            </tr>
+        </table>
+
+
+    </div>
+</div>
+
+<br>
+<center>
+    <a href="{:url('index/user/modifyPassword')}" class="btn btn-primary">修改密码</a>
+</center>
+
+</body>
+</html>

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/static/home/css/body-bg.css"/>
     <script src="/static/home/lib/bs/js/jquery-3.4.1.js"></script>
     <script src="/static/home/lib/bs/js/bootstrap.js"></script>
+    <script src="/static/home/lib/bs/js/bootstrap.bundle.js"></script>
 </head>
 
 
@@ -35,7 +36,7 @@
 
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             作业管理
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -48,10 +49,15 @@
                         </div>
                     </li>
 
-
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{:url('/index/upload/uploadFile')}">文件上传</a>
+                    </li>
 
 
                 </ul>
+
+
+
 
 
                 <form class="form-inline my-2 my-lg-0">
